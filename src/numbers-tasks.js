@@ -186,8 +186,21 @@ function getParallelepipedDiagonal(a, b, c) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  let count = '';
+  if (pow === 0) {
+    return num;
+  }
+  if (pow === 1) {
+    count += `${String(Math.round(num / 10))}0`;
+  }
+  if (pow === 2) {
+    count += `${String(Math.round(num / 100))}00`;
+  }
+  if (pow === 3) {
+    count += `${String(Math.round(num / 1000))}000`;
+  }
+  return +count;
 }
 
 /**
@@ -207,8 +220,17 @@ function roundToPowerOfTen(/* num, pow */) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(n) {
+  let count = 0;
+  for (let i = 1; i <= n; i += 1) {
+    if (n % i === 0) {
+      count += 1;
+    }
+  }
+  if (count === 2) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -226,8 +248,14 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  if (value === null) {
+    return def;
+  }
+  if (Number.isNaN(Number(value))) {
+    return def;
+  }
+  return Number.parseInt(value, 10);
 }
 
 /**
@@ -241,8 +269,8 @@ function toNumber(/* value, def */) {
  *   -2 => -8
  *   0  => 0
  */
-function getCube(/* num */) {
-  throw new Error('Not implemented');
+function getCube(num) {
+  return num ** 3;
 }
 
 /**
@@ -258,8 +286,23 @@ function getCube(/* num */) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+function getFibonacciNumber(index) {
+  let count = 0;
+  let total = 1;
+  let cur = 0;
+  let result = 0;
+  if (index === 0) {
+    return 0;
+  }
+  for (let i = 1; i < index * 2; i += 1) {
+    if (i === index) {
+      result = total;
+    }
+    cur = total;
+    total += count;
+    count = cur;
+  }
+  return result;
 }
 
 /**
